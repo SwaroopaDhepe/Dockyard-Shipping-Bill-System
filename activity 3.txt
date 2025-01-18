@@ -1,0 +1,87 @@
+//Code to calculate Dockyard Shipping Bill
+
+#include <stdio.h>
+int main(){
+//Define variables
+float berthingFeePerDay, cargoHandlingFeePerTon, repairCosts;
+int numberOfDays, tonsOfCargo;
+float totalBill;
+char customerName[50]; //Array to store the name
+long phoneNumber, accountNumber, mobileNumber, chequeNumber, upiId; 
+int paymentMethod;
+char bankName[50]; //Array to store bank name
+  
+//Personal information
+printf(" --- PERSONAL INFORMATION ---\n");
+printf("ENTER CUSTOMER NAME: ");
+fgets(customerName, sizeof(customerName), stdin); 
+printf("ENTER VALID PHONE NUMBER: ");
+scanf("%ld", &phoneNumber); 
+getchar(); 
+//Input berthing fee per day
+printf("\n --- BILL DETAILS ---\n");
+printf("Enter the berthing fee per day: ");
+scanf("%f", &berthingFeePerDay);
+//Input number of days the ship is docked
+printf("Enter the number of days the ship is docked: ");
+scanf("%d", &numberOfDays);
+//Input cargo handling fee per ton
+printf("Enter the cargo handling fee per ton: ");
+scanf("%f", &cargoHandlingFeePerTon);
+//Input tons of cargo
+printf("Enter the tons of cargo: ");
+scanf("%d", &tonsOfCargo);
+//Input repair costs
+printf("Enter the repair costs: ");
+scanf("%f", &repairCosts);
+  
+//Calculate the total bill
+float berthingFeeTotal = berthingFeePerDay * numberOfDays;
+float cargoHandlingTotal = cargoHandlingFeePerTon * tonsOfCargo;
+totalBill = berthingFeeTotal + cargoHandlingTotal + repairCosts;
+  
+//Display the total bill
+printf("\n--- Dockyard Ship Bill ---\n");
+printf("Customer Name: %s", customerName);
+printf("Phone Number: %ld\n", phoneNumber);
+printf("Berthing Fee: $%.2f\n", berthingFeeTotal);
+printf("Cargo Handling Fee: $%.2f\n", cargoHandlingTotal);
+printf("Repair Costs: $%.2f\n", repairCosts);
+printf("Total Bill: $%.2f\n", totalBill);
+  
+//Payment method
+printf("\n--- BILL PAYMENT METHOD ---\n");
+printf("1. BANK TRANSFER\n");
+printf("2. ONLINE PHONE PAYMENT\n");
+printf("3. CHEQUE\n");
+printf("SELECT PAYMENT METHOD: ");
+scanf("%d", &paymentMethod);
+//Using switch case statement for the payment method
+switch(paymentMethod){
+case 1:
+    getchar(); 
+    printf("ENTER BANK NAME: ");
+    fgets(bankName, sizeof(bankName), stdin);
+    printf("ENTER ACCOUNT NUMBER: ");
+    scanf("%ld", &accountNumber);
+    break;
+case 2:
+    printf("ENTER MOBILE NUMBER FOR MONEY TRANSFER: ");
+    scanf("%ld", &mobileNumber);
+    printf("ENTER UPI ID: ");
+    scanf("%ld", &upiId);
+    break;
+case 3:
+    getchar(); 
+    printf("ENTER THE BANK NAME: ");
+    fgets(bankName, sizeof(bankName), stdin);
+    printf("ENTER CHEQUE NUMBER: ");
+    scanf("%ld", &chequeNumber);
+    break;
+//Default statement
+default:
+    printf("INVALID PAYMENT METHOD\n");
+}
+printf("--- THANK YOU FOR YOUR COOPERATION ---\n");
+return 0;
+}
